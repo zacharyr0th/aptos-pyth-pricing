@@ -8,39 +8,36 @@ This project demonstrates how to integrate Pyth Network price feeds with Aptos s
 
 ```
 aptos-pyth-pricing/
-├── docs/                  # Additional documentation
+├── source/                # Core implementation
+│   ├── staking/          # Oracle and commission contracts
+│   │   ├── Move.toml
+│   │   ├── sources/      # Contract source files
+│   │   └── tests/        # Contract test files
+│   └── pyth/             # Pyth Network integration
+│       ├── Move.toml
+│       └── sources/      # Pyth interface implementations
 ├── tutorials/            # Step-by-step tutorial series
 │   ├── 00-overview.md
 │   ├── 01-getting-started.md
 │   ├── 02-understanding-pyth.md
 │   ├── 03-oracle-implementation.md
-│   ├── 04-security-monitoring.md
-│   ├── 05-testing.md
-│   ├── 06-deployment.md
-│   └── 07-advanced-features.md
-├── aptos-pyth-pricing/   # Core implementation
-│   ├── staking/         # Oracle and commission contracts
-│   │   ├── Move.toml
-│   │   ├── sources/
-│   │   │   ├── oracle.move
-│   │   │   └── commission.move
-│   │   └── tests/
-│   └── pyth/            # Pyth Network integration
-│       ├── Move.toml
-│       └── sources/
-│           ├── price_identifier.move
-│           ├── pyth.move
-│           ├── price.move
-│           └── i64.move
+│   ├── 04-commission-contract.md
+│   ├── 05-security-best-practices.md
+│   ├── 06-testing-deployment.md
+│   └── 07-advanced-topics.md
+├── .gitignore
+├── LICENSE
+└── README.md
 ```
 
 ## Tutorial Series
 
 | Tutorial | Implementation Topics | Key Concepts |
 |----------|---------------------|--------------|
+| [0. Overview](./tutorials/00-overview.md) | • Project overview<br>• Architecture overview<br>• Series roadmap | • Project structure<br>• Learning path |
 | [1. Getting Started](./tutorials/01-getting-started.md) | • Development environment setup<br>• Project structure creation<br>• Dependencies configuration | • Move programming<br>• Project organization |
-| [2. Understanding Pyth Network](./tutorials/02-understanding-pyth.md) | • Pyth Network architecture<br>• Price feed structure | • Price feed integration<br>• Data normalization |
-| [3. Oracle Implementation](./tutorials/03-oracle-implementation.md) | • Oracle module implementation<br>• Commission contract implementation | • Price normalization<br>• Commission calculation |
+| [2. Understanding Pyth](./tutorials/02-understanding-pyth.md) | • Pyth Network architecture<br>• Price feed structure | • Price feed integration<br>• Data normalization |
+| [3. Oracle Implementation](./tutorials/03-oracle-implementation.md) | • Oracle module implementation<br>• Price feed integration | • Price normalization<br>• Oracle design |
 | [4. Commission Contract](./tutorials/04-commission-contract.md) | • Contract implementation<br>• Fee calculation<br>• State management | • Contract design<br>• Fee structures |
 | [5. Security Best Practices](./tutorials/05-security-best-practices.md) | • Circuit breakers<br>• Price validation<br>• Monitoring systems | • Security patterns<br>• Monitoring patterns |
 | [6. Testing & Deployment](./tutorials/06-testing-deployment.md) | • Unit testing<br>• Integration testing<br>• Deployment process | • Test organization<br>• Deployment steps |
@@ -48,15 +45,14 @@ aptos-pyth-pricing/
 
 ## Core Components
 
-1. **Pyth Integration (`pyth/`)**
-   - `i64.move`: Signed integer implementation
-   - `price.move`: Price feed data structures
-   - `price_identifier.move`: Price feed ID handling
-   - `pyth.move`: Core Pyth Network interface
+1. **Pyth Integration (`source/pyth/`)**
+   - Price feed data structures
+   - Price feed ID handling
+   - Core Pyth Network interface
 
-2. **Staking Module (`staking/`)**
-   - `oracle.move`: Price oracle implementation
-   - `commission.move`: Commission contract logic
+2. **Staking Module (`source/staking/`)**
+   - Price oracle implementation
+   - Commission contract logic
    - Unit and integration tests
 
 ## Prerequisites
@@ -95,10 +91,11 @@ aptos-pyth-pricing/
 4. Build and test:
    ```bash
    # Compile the modules
-   aptos move compile --package-dir aptos-pyth-pricing/
+   aptos move compile --package-dir source/staking/
+   aptos move compile --package-dir source/pyth/
 
    # Run tests
-   aptos move test --package-dir aptos-pyth-pricing/ --named-addresses staking=0xcafe,manager=0x123,operator=0x124,pyth=0x182
+   aptos move test --package-dir source/staking/
    ```
 
 ## Documentation
@@ -112,8 +109,4 @@ For detailed documentation, follow our tutorial series in the `tutorials/` direc
 
 ## License
 
-This project is licensed under the MIT License.
-
-```
-
-See the [LICENSE](./LICENSE) file for the full license text.
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.

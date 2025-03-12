@@ -6,67 +6,52 @@
 
 ```
 aptos-pyth-pricing/
-├── docs/
-├── tutorials/
+├── source/                # Core implementation
+│   ├── staking/          # Oracle and commission contracts
+│   │   ├── Move.toml
+│   │   ├── sources/      # Contract source files
+│   │   └── tests/        # Contract test files
+│   └── pyth/             # Pyth Network integration
+│       ├── Move.toml
+│       └── sources/      # Pyth interface implementations
+├── tutorials/            # Step-by-step tutorial series
 │   ├── 00-overview.md
 │   ├── 01-getting-started.md
 │   ├── 02-understanding-pyth.md
 │   ├── 03-oracle-implementation.md
-│   ├── 04-security-monitoring.md
-│   ├── 05-testing.md
-│   ├── 06-deployment.md
-│   └── 07-advanced-features.md
-├── aptos-pyth-pricing/
-│   ├── staking/
-│   │   ├── Move.toml
-│   │   ├── sources/
-│   │   │   ├── oracle.move
-│   │   │   └── commission.move
-│   │   └── tests/
-│   └── pyth/
-│       ├── Move.toml
-│       └── sources/
-│           ├── price_identifier.move
-│           ├── pyth.move
-│           ├── price.move
-│           └── i64.move
+│   ├── 04-commission-contract.md
+│   ├── 05-security-best-practices.md
+│   ├── 06-testing-deployment.md
+│   └── 07-advanced-topics.md
 ├── .gitignore
-├── README.md
-├── tasks.md
-└── tutorial.md
+├── LICENSE
+└── README.md
+```
 
 ## Tutorial Structure and Key Concepts
 
 | Tutorial | Implementation Topics | Key Concepts |
 |----------|---------------------|--------------|
-| [1. Getting Started](./01-getting-started.md) | • Development environment setup<br>• Project structure creation<br>• Dependencies configuration<br>• Common utilities implementation | • Move programming<br>• Project organization<br>• Shared utilities |
-| [2. Understanding Pyth Network](./02-understanding-pyth.md) | • Pyth Network architecture<br>• Price feed structure<br>• Core security considerations | • Price feed integration<br>• Data normalization<br>• Basic security |
-| [3. Core Implementation](./03-oracle-implementation.md) | • Oracle module implementation<br>• Commission contract implementation<br>• Basic error handling | • Price normalization<br>• Commission calculation<br>• Error handling |
-| [4. Security & Monitoring](./04-security-monitoring.md) | • Circuit breakers<br>• Price validation<br>• Monitoring systems<br>• Event handling | • Circuit breakers<br>• Price validation<br>• Monitoring patterns |
-| [5. Testing](./05-testing.md) | • Unit testing<br>• Integration testing<br>• Test utilities<br>• Common test patterns | • Test organization<br>• Test coverage<br>• Test utilities |
-| [6. Deployment & Operations](./06-deployment.md) | • Testnet deployment<br>• Mainnet deployment<br>• Operational monitoring<br>• Troubleshooting | • Deployment process<br>• Monitoring<br>• Maintenance |
-| [7. Advanced Features](./07-advanced-features.md) | • Multi-oracle consensus<br>• Gas optimization<br>• Advanced security<br>• Performance tuning | • Advanced patterns<br>• Optimization<br>• Best practices |
+| [0. Overview](./00-overview.md) | • Project overview<br>• Architecture overview<br>• Series roadmap | • Project structure<br>• Learning path |
+| [1. Getting Started](./01-getting-started.md) | • Development environment setup<br>• Project structure creation<br>• Dependencies configuration | • Move programming<br>• Project organization |
+| [2. Understanding Pyth](./02-understanding-pyth.md) | • Pyth Network architecture<br>• Price feed structure | • Price feed integration<br>• Data normalization |
+| [3. Oracle Implementation](./03-oracle-implementation.md) | • Oracle module implementation<br>• Price feed integration | • Price normalization<br>• Oracle design |
+| [4. Commission Contract](./04-commission-contract.md) | • Contract implementation<br>• Fee calculation<br>• State management | • Contract design<br>• Fee structures |
+| [5. Security Best Practices](./05-security-best-practices.md) | • Circuit breakers<br>• Price validation<br>• Monitoring systems | • Security patterns<br>• Monitoring patterns |
+| [6. Testing & Deployment](./06-testing-deployment.md) | • Unit testing<br>• Integration testing<br>• Deployment process | • Test organization<br>• Deployment steps |
+| [7. Advanced Topics](./07-advanced-topics.md) | • Multi-oracle consensus<br>• Gas optimization | • Advanced patterns<br>• Optimization |
 
 ## Core Components
 
-Our implementation consists of these key components:
+1. **Pyth Integration (`source/pyth/`)**
+   - Price feed data structures
+   - Price feed ID handling
+   - Core Pyth Network interface
 
-1. **Pyth Integration (`pyth/`)**
-   - `i64.move`: Signed integer implementation
-   - `price.move`: Price feed data structures
-   - `price_identifier.move`: Price feed ID handling
-   - `pyth.move`: Core Pyth Network interface
-
-2. **Staking Module (`staking/`)**
-   - `oracle.move`: Price oracle implementation
-   - `commission.move`: Commission contract logic
+2. **Staking Module (`source/staking/`)**
+   - Price oracle implementation
+   - Commission contract logic
    - Unit and integration tests
-
-3. **Documentation**
-   - Step-by-step tutorials
-   - API documentation
-   - Deployment guides
-   - Security considerations
 
 ## Prerequisites
 
@@ -101,7 +86,15 @@ Our implementation consists of these key components:
    aptos init --profile testnet --network testnet
    ```
 
-4. Follow each tutorial in sequence, starting with [Getting Started](./01-getting-started.md).
+4. Build and test:
+   ```bash
+   # Compile the modules
+   aptos move compile --package-dir source/staking/
+   aptos move compile --package-dir source/pyth/
+
+   # Run tests
+   aptos move test --package-dir source/staking/
+   ```
 
 ## Additional Resources
 
