@@ -40,11 +40,11 @@ aptos-pyth-pricing/
 |----------|---------------------|--------------|
 | [1. Getting Started](./tutorials/01-getting-started.md) | • Development environment setup<br>• Project structure creation<br>• Dependencies configuration | • Move programming<br>• Project organization |
 | [2. Understanding Pyth Network](./tutorials/02-understanding-pyth.md) | • Pyth Network architecture<br>• Price feed structure | • Price feed integration<br>• Data normalization |
-| [3. Core Implementation](./tutorials/03-oracle-implementation.md) | • Oracle module implementation<br>• Commission contract implementation | • Price normalization<br>• Commission calculation |
-| [4. Security & Monitoring](./tutorials/04-security-monitoring.md) | • Circuit breakers<br>• Price validation<br>• Monitoring systems | • Security patterns<br>• Monitoring patterns |
-| [5. Testing](./tutorials/05-testing.md) | • Unit testing<br>• Integration testing<br>• Test utilities | • Test organization<br>• Test coverage |
-| [6. Deployment & Operations](./tutorials/06-deployment.md) | • Testnet deployment<br>• Mainnet deployment | • Deployment process<br>• Maintenance |
-| [7. Advanced Features](./tutorials/07-advanced-features.md) | • Multi-oracle consensus<br>• Gas optimization | • Advanced patterns<br>• Optimization |
+| [3. Oracle Implementation](./tutorials/03-oracle-implementation.md) | • Oracle module implementation<br>• Commission contract implementation | • Price normalization<br>• Commission calculation |
+| [4. Commission Contract](./tutorials/04-commission-contract.md) | • Contract implementation<br>• Fee calculation<br>• State management | • Contract design<br>• Fee structures |
+| [5. Security Best Practices](./tutorials/05-security-best-practices.md) | • Circuit breakers<br>• Price validation<br>• Monitoring systems | • Security patterns<br>• Monitoring patterns |
+| [6. Testing & Deployment](./tutorials/06-testing-deployment.md) | • Unit testing<br>• Integration testing<br>• Deployment process | • Test organization<br>• Deployment steps |
+| [7. Advanced Topics](./tutorials/07-advanced-topics.md) | • Multi-oracle consensus<br>• Gas optimization | • Advanced patterns<br>• Optimization |
 
 ## Core Components
 
