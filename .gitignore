@@ -78,3 +78,67 @@ site/
 *.tgz
 *.tar.gz
 *.zip
+
+# Additional Move/Aptos specific
+.move-build/
+.move/
+.move-layout.json
+build-info.json
+*.mv.bytecode
+move-packages/
+
+# Additional development files
+.history/
+.metals/
+.bloop/
+.amman/
+.anchor/
+
+# Additional test files
+.test-results/
+test-ledger/
+test-validator/
+
+# Additional IDE/Editor
+.settings/
+.project
+.classpath
+*.sublime-*
+.vim/
+*.code-workspace
+
+# Additional build artifacts
+dist-*/
+out/
+output/
+.output/
+
+# Additional dependency management
+yarn.lock
+package-lock.json
+Cargo.lock
+
+# Additional environment
+.env.*
+!.env.example
+.envrc
+
+# Additional cache
+.cache/
+.npm/
+.yarn/
+
+# Additional deployment
+.deploy/
+deployment/
+deployed/
+
+# Additional security
+*.pem
+*.key
+*.cert
+*.crt
+*.p12
+*.pfx
+.secrets/
+secrets/
