@@ -7,3 +7,6 @@ AptosFramework = { git = "https://github.com/aptos-labs/aptos-framework.git", su
 
 [addresses]
 pyth = "_"
+
+[dev-addresses]
+pyth = "0x182"
