@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This project demonstrates how to integrate Pyth Network price feeds with Aptos smart contracts.
+A tutorial on using Pyth oracle prices in Aptos smart contracts.
 
 ## Project Structure
 
