@@ -17,7 +17,7 @@ The oracle module is responsible for:
 
 ## 🛠️ Implementation
 
-The complete implementation can be found in [`oracle.move`](../move/staking/sources/oracle.move). Let's examine the key components:
+The complete implementation can be found in [`move/staking/sources/oracle.move`](../move/staking/sources/oracle.move). Let's examine the key components:
 
 ### ⚙️ Configuration Constants
 
@@ -37,6 +37,7 @@ The complete implementation can be found in [`oracle.move`](../move/staking/sour
 
 > 💡 **Note**: The configuration is stored on-chain and initialized during module deployment.
 
+Source: [`move/staking/sources/oracle.move`](../move/staking/sources/oracle.move)
 ```move
 struct OracleConfig has key {
     /// Maximum age of the price in seconds
@@ -48,6 +49,7 @@ struct OracleConfig has key {
 
 The main price fetching function:
 
+Source: [`move/staking/sources/oracle.move`](../move/staking/sources/oracle.move)
 ```move
 #[view]
 public fun get_apt_price(): u128 acquires OracleConfig, TestPrice {
@@ -64,6 +66,7 @@ public fun get_apt_price(): u128 acquires OracleConfig, TestPrice {
 
 > 🔍 **Testing Tip**: Use the test-only functionality for simulating price updates in your tests.
 
+Source: [`move/staking/sources/oracle.move`](../move/staking/sources/oracle.move)
 ```move
 #[test_only]
 struct TestPrice has key {

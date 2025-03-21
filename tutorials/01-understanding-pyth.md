@@ -26,6 +26,7 @@ The Pyth integration consists of three main interface modules, all found in the 
 
 Price feeds are identified using the [`price_identifier.move`](../move/pyth/sources/price_identifier.move) module:
 
+Source: [`move/pyth/sources/price_identifier.move`](../move/pyth/sources/price_identifier.move)
 ```move
 /// This module provides functionality for working with Pyth price feed identifiers.
 module pyth::price_identifier {
@@ -41,6 +42,7 @@ module pyth::price_identifier {
 ```
 
 Example usage:
+Source: [`move/pyth/sources/price_identifier.move`](../move/pyth/sources/price_identifier.move)
 ```move
 // APT/USD price feed
 const PYTH_APT_ID: vector<u8> = x"03ae4db29ed4ae33d323568895aa00337e658e348b37509f5372ae51f0af00d5";
@@ -54,11 +56,13 @@ let id = price_identifier::from_byte_vec(PYTH_APT_ID);
 ### 🔄 Integration Steps
 
 1. **Fetch Price Data**
+Source: [`move/pyth/sources/pyth.move`](../move/pyth/sources/pyth.move)
 ```move
 let price = pyth::get_price_no_older_than(price_id, max_age_secs);
 ```
 
 2. **Access Price Components**
+Source: [`move/pyth/sources/price.move`](../move/pyth/sources/price.move)
 ```move
 let raw_price = price::get_price(&price);     // Current price
 let confidence = price::get_conf(&price);      // Confidence interval
@@ -72,4 +76,4 @@ For complete implementation details of these interfaces, refer to the source fil
 
 ## ⏭️ Next Steps
 
-Proceed to [Oracle Implementation](../part-2/01-oracle-implementation.md) to learn how to build on top of these interfaces. 
+Proceed to [Oracle Implementation](./03-oracle-implementation.md) to learn how to build on top of these interfaces. 

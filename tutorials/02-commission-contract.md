@@ -8,7 +8,7 @@
 
 ## 📋 Overview
 
-The commission contract ([`commission.move`](../move/staking/sources/commission.move)) enables USD-denominated payments using APT tokens. It manages:
+The commission contract ([`move/staking/sources/commission.move`](../move/staking/sources/commission.move)) enables USD-denominated payments using APT tokens. It manages:
 
 - 💵 USD-denominated yearly commission rates
 - 🔄 Automatic USD/APT conversion using oracle prices
@@ -32,6 +32,7 @@ The commission contract ([`commission.move`](../move/staking/sources/commission.
 
 > 💡 **Note**: Events help track commission distribution and debt changes.
 
+Source: [`move/staking/sources/commission.move`](../move/staking/sources/commission.move)
 ```move
 #[event]
 struct CommissionDistributed has drop, store {
@@ -48,6 +49,8 @@ struct CommissionDistributed has drop, store {
 
 1. **Commission Calculation**
    > 📊 Calculates owed commission based on time passed
+   
+   Source: [`move/staking/sources/commission.move`](../move/staking/sources/commission.move)
    ```move
    public fun commission_owed(): u64 {
        let seconds_passed = now_secs - config.last_update_secs;
@@ -61,6 +64,8 @@ struct CommissionDistributed has drop, store {
 
 2. **Currency Conversion**
    > 💱 Converts between USD and APT using oracle prices
+   
+   Source: [`move/staking/sources/commission.move`](../move/staking/sources/commission.move)
    ```move
    inline fun usd_to_apt(usd_amount: u64): u64 {
        let apt_price = oracle::get_apt_price();
@@ -74,6 +79,8 @@ struct CommissionDistributed has drop, store {
 
 3. **Distribution Logic**
    > 📤 Handles commission payments and debt tracking
+   
+   Source: [`move/staking/sources/commission.move`](../move/staking/sources/commission.move)
    ```move
    public entry fun distribute_commission(account: &signer) {
        let commission_in_apt = commission_owed_in_apt();
@@ -97,6 +104,8 @@ struct CommissionDistributed has drop, store {
    - Debt tracking preserves value across price changes
 
 2. **🔐 Access Control**
+   
+   Source: [`move/staking/sources/commission.move`](../move/staking/sources/commission.move)
    ```move
    inline fun assert_manager_or_operator(account: &signer) {
        assert!(
@@ -116,6 +125,7 @@ struct CommissionDistributed has drop, store {
 
 > 🔍 **Testing Tip**: Always test edge cases and debt scenarios.
 
+Source: [`move/staking/tests/commission_tests.move`](../move/staking/tests/commission_tests.move)
 ```move
 #[test]
 fun test_distribute_commission() {
